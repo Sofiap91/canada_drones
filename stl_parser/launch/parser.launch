@@ -1,0 +1,9 @@
+<launch>
+
+  <node name="positions_service_srv"
+        pkg="stl_parser"
+        type="stl_parser.py"
+        output="screen"
+        respawn="true" />
+
+</launch>
