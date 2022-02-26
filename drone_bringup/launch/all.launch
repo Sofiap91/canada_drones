@@ -1,0 +1,6 @@
+<launch>
+
+    <include file="$(find drone_service)/launch/service.launch" />
+    <include file="$(find stl_parser)/launch/parser.launch" />
+
+</launch>
