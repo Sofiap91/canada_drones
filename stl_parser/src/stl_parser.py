@@ -5,11 +5,13 @@ from stl import mesh
 from drone_msgs.srv import PosesList, PosesListResponse
 from drone_msgs.msg import Poses
 
-
+# service callback function
 def callback(request):
     rospy.loginfo("STL Parser called!")
+    # PosesList message instance
     response = PosesListResponse()
 
+    # Get point lists from STL file
     my_mesh = mesh.Mesh.from_file(
         '/home/user/catkin_ws/src/files/cube_24vert.stl')
     points = np.around(np.unique(my_mesh.vectors.reshape(
@@ -17,6 +19,7 @@ def callback(request):
 
     list_points = points.tolist()
 
+    # Fill msg structure
     for i in range(len(list_points)):
         pos_aux = Poses()
         pos_aux.poses = list_points[i]
@@ -25,7 +28,7 @@ def callback(request):
     print("Points are", response)
     return response
 
-
+# Node and service init
 rospy.init_node("positions_service_srv")
 pos_srv = rospy.Service('/stl_positions_srv', PosesList, callback)
 
