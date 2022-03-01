@@ -10,7 +10,8 @@ def callback(request):
     rospy.loginfo("STL Parser called!")
     response = PosesListResponse()
 
-    my_mesh = mesh.Mesh.from_file('/home/user/catkin_ws/cube_24vert.stl')
+    my_mesh = mesh.Mesh.from_file(
+        '/home/user/catkin_ws/src/files/cube_24vert.stl')
     points = np.around(np.unique(my_mesh.vectors.reshape(
         [my_mesh.vectors.size/3, 3]), axis=0), 2)
 
